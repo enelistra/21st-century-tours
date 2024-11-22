@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bootstrap Example</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Outfit' rel='stylesheet'>
+        <style>
+            body {
+                padding-top: 0px;
+            }
+            .carousel-caption {
+                left: 15%;
+                right: auto;
+                text-align: left;
+                transform: translateY(-50%);
+                top: 50%;
+                color: white;
+                max-width: 40%;
+            }
+
+            footer .me-3 {
+                margin-right: 15px;
+            }
+        
+            footer .fa-lg {
+                font-size: 1.5em;
+            }
+            
+            .carousel-inner {
+                position: relative;
+            }
+
+            .carousel-item img {
+                width: 100%;
+                height: 100vh;
+                object-fit: cover;
+            }
+
+            @media (max-width: 768px) {
+                .carousel-caption {
+                    left: 10%;
+                    max-width: 80%;
+                    font-size: 14px;
+                }
+        
+                .carousel-caption p {
+                    font-size: 12px;
+                }
+            }
+
+            @media (max-width: 576px) {
+                .carousel-caption {
+                    font-size: 10px;
+                    left: 5%;
+                    max-width: 90%;
+                }
+        
+                .carousel-caption p {
+                    font-size: 10px;
+                }
+                .card {
+                    margin-bottom: 20px;
+                }
+            }
+
+            #contact {
+                color: white;
+                padding: 60px 0;
+                position: relative;
+            }
+
+            #contact .bg-dark {
+                background: rgba(0, 0, 0, 0.8);
+                padding: 20px;
+            }
+
+            #contact .btn-primary {
+                background-color: #3498db;
+                border: none;
+                transition: background 0.3s ease;
+            }
+
+            #contact .btn-primary:hover {
+                background-color: #1d6fa5;
+            }
+
+            #contact ul {
+                font-size: 1.1rem;
+                line-height: 2;
+            }
+
+            @media (max-width: 768px) {
+                #contact .text-center {
+                    text-align: center;
+                }
+                #contact .bg-dark {
+                    margin-bottom: 20px;
+                }
+            }
+
+            .hero-section {
+                height: 100vh;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                text-align: center;
+            }
+            
+            .background-video {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: -1;
+            }
+            
+            .hero-section .logo {
+                position: absolute;
+                top: 10%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 2;
+                animation: fadeIn 1s ease-in-out;
+            }
+            
+            .hero-section .logo img {
+                width: 50%;
+            }
+            
+            .hero-section .animated-text h1 {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 50px;
+                font-family: 'Arial', sans-serif;
+                font-size: 3rem;
+                font-weight: bold;
+                margin: 0;
+                padding: 0;
+                opacity: 0;
+                transform: translateY(50px);
+                animation: slideIn 3s ease-in-out forwards;
+            }
+            
+            .hero-section .animated-text .separator {
+                font-size: 2.5rem;
+                color: rgba(255, 255, 255, 0.7);
+            }
+            
+            @media screen and (max-width: 768px) {
+                .hero-section .logo img {
+                width: 120%;
+                }
+                .hero-section .animated-text h1 {
+                flex-direction: column;
+                text-align: center;
+                gap: 5px;
+                }
+                .hero-section .animated-text .separator {
+                display: none;
+                }
+            }
+            
+            @keyframes slideIn {
+                from {
+                opacity: 0;
+                transform: translateY(50px);
+                }
+                to {
+                opacity: 1;
+                transform: translateY(0);
+                }
+            }
+            
+            @keyframes fadeIn {
+                from {
+                opacity: 0;
+                }
+                to {
+                opacity: 1;
+                }
+            }
+           
+            .whatsapp-icon {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1000;
+                background-color: #25d366;
+                color: white;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            }
+
+            .whatsapp-icon:hover {
+                transform: scale(1.1);
+                box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            }
+
+            .whatsapp-icon i {
+                font-size: 24px;
+            }
+           
+            .navbar {
+                padding: 0.8rem 1rem;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .navbar-brand img {
+                max-width: 200px;
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .navbar.scrolled .navbar-brand img {
+                transform: scale(0.85);
+            }
+
+            .navbar-nav .nav-link {
+                font-size: 1rem;
+                margin: 0 15px;
+                transition: color 0.3s ease-in-out;
+            }
+
+            .navbar-nav .nav-link:hover {
+                color: #007bff;
+            }
+
+            .navbar.transparent {
+                background: rgba(255, 255, 255, 0.9);
+                box-shadow: none;
+            }
+
+            .navbar.scrolled {
+                background-color: #343a40 !important;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            @media (max-width: 768px) {
+                .navbar-brand img {
+                    max-width: 100px;
+                }
+
+                .navbar-nav .nav-link {
+                    margin: 5px 0;
+                    font-size: 0.9rem;
+                }
+            }
+            .card {
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .card-caption {
+                position: absolute; /* Position the caption absolutely to avoid white space */
+                bottom: 0; /* Start below the card */
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+                color: white; /* White text color */
+                opacity: 0; /* Hidden by default */
+                padding: 10px;
+                font-family: 'Outfit', sans-serif;
+                transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth transition */
+                transform: translateY(100%); /* Position outside the card */
+            }
+            
+            .card:hover .card-caption {
+                opacity: 1; /* Fully visible */
+                transform: translateY(0); /* Slide into view */
+            }
+            
+            .card-img-top {
+                display: block; /* Remove any inline spacing */
+                width: 100%;
+                height: auto; /* Ensure the image keeps its aspect ratio */
+                transition: transform 0.3s ease-in-out; /* Smooth zoom effect */
+            }
+            
+            .card:hover .card-img-top {
+                transform: scale(1.1); /* Slight zoom-in effect */
+            }
+            
+            
+            .text-rectangle {
+                padding: 20px; /* Space inside the rectangle */
+                text-align: justify; /* Justify the text alignment */
+                font-size: 16px; /* Adjust font size */
+                line-height: 1.6; /* Space between lines */
+            }
+        </style>
+    </head>    
+    <body>
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="./static/logo/21CT Logo.png" alt="Logo" width="200%">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="./index.html" style="font-family: 'Outfit', sans-serif;">HOME</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="./index.html#about" style="font-family: 'Outfit', sans-serif;">ABOUT</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="./index.html#service" style="font-family: 'Outfit', sans-serif;">SERVICES</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="./index.html#contact" style="font-family: 'Outfit', sans-serif;">CONTACT</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <video autoplay loop muted plays-inline class="background-video">
+                <source src="./static/carousal/Seq1.mp4" type="video/mp4">
+            </video>
+            <div class="animated-text">
+                <h1 class="text">
+                    <span style="font-family: 'Outfit', sans-serif; font-weight: 900;">EXPLORE .</span>
+                    <span style="font-family: 'Outfit', sans-serif;">DISCOVER .</span>
+                    <span style="font-family: 'Outfit', sans-serif;">LIVE .</span>
+                </h1>
+            </div>
+        </div>
+
+        <!-- Content Sections -->
+
+        <section id="about" class="py-5 bg-light">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- Text on the Left -->
+                    <div class="col-md-4">
+                        <h1 style="font-family: 'Outfit', sans-serif;">OUR STORY</h1>
+                    </div>
+                    <!-- Text in Rectangle -->
+                    <div class="col-md-8">
+                        <div class="text-rectangle">
+                            <p style="font-family: 'Outfit', sans-serif;">
+                                At 21st Century Tours, we specialize in delivering tailored travel experiences across domestic, inbound, and international destinations. With a passion for travel and a commitment to excellence, we have curated tours for Rotary Clubs, corporate groups, and individual travelers. Our portfolio includes customized packages that suit every traveler’s needs, from serene getaways to adventurous expeditions.
+                                Located in the heart of Kochi, Kerala, we pride ourselves on being a member of the Indian Association of Travel & Tourism Experts (IATTE) and Kerala Travel Mart (KTM). Backed by these affiliations, we ensure professionalism, reliability, and seamless service.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="service" class="py-5">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h1 style="font-family: 'Outfit', sans-serif;">OUR SERVICES</h1>
+                    <p style="font-family: 'Outfit', sans-serif;">Explore the variety of services we offer to make your travel experience unforgettable.</p>
+                </div>
+                <div class="row">
+                    <!-- Domestic Tours Card -->
+                    <div class="col-md-4">
+                        <a href="./domestic_tours.html" style="text-decoration: none;" class="text-dark">
+                            <div class="card shadow h-100 position-relative">
+                                <img src="./static/packages/package_2.jpg" class="card-img-top" alt="Domestic Tours">
+                                <div class="card-caption text-center">
+                                    <p class="card-text" style="font-family: 'Outfit', sans-serif;">Discover the stunning beauty of India with our expertly planned domestic tours.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- International Tours Card -->
+                    <div class="col-md-4">
+                        <a href="./International_tours.html" style="text-decoration: none;" class="text-dark">
+                            <div class="card shadow h-100 position-relative">
+                                <img src="./static/packages/package_1.jpg" class="card-img-top" alt="International Tours">
+                                <div class="card-caption text-center">
+                                    <p class="card-text" style="font-family: 'Outfit', sans-serif;">Experience the charm of global destinations with our carefully curated international tours.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Customized Tours Card -->
+                    <div class="col-md-4">
+                        <a href="./Custom_tours.html" style="text-decoration: none;" class="text-dark">
+                            <div class="card shadow h-100 position-relative">
+                                <img src="./static/packages/package_3.jpg" class="card-img-top" alt="Customized Tours">
+                                <div class="card-caption text-center">
+                                    <p class="card-text" style="font-family: 'Outfit', sans-serif;">Tailor your travel experience to suit your preferences with our customized tours.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+                 
+        
+        <section id="contact" class="py-5" style="background-image: url('./static/carousal/pop.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+            <div class="container text-white">
+                <div class="row align-items-center">
+                    <!-- Contact Form -->
+                    <div class="col-md-">
+                        <div class="p-4">
+                            <h2 class="text-center mb-4" style="font-family: 'Outfit', sans-serif;">GET IN TOUCH</h2>
+                        </div>
+                    </div>
+                    <!-- Contact Info -->
+                    <div class="col-md-8 mx-5">
+                        <form>
+                            <div class="mb-3">
+                                <label for="name" class="form-label" style="font-family: 'Outfit', sans-serif;">Your Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label" style="font-family: 'Outfit', sans-serif;">Email Address</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label" style="font-family: 'Outfit', sans-serif;">Message</label>
+                                <textarea class="form-control" id="message" rows="4" placeholder="Write your message"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary w-100" style="font-family: 'Outfit', sans-serif;">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="text-white py-4" style="background-color: #082f3c;">
+            <div class="container">
+                <div class="row">
+                    <!-- Quick Links -->
+                    <div class="col-md-4 mb-3">
+                        <h5 style="font-family: 'Outfit', sans-serif;">Quick Links</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#home" class="text-white text-decoration-none" style="font-family: 'Outfit', sans-serif;">Home</a></li>
+                            <li><a href="#about" class="text-white text-decoration-none" style="font-family: 'Outfit', sans-serif;">About Us</a></li>
+                            <li><a href="#services" class="text-white text-decoration-none" style="font-family: 'Outfit', sans-serif;">Services</a></li>
+                            <li><a href="#contact" class="text-white text-decoration-none" style="font-family: 'Outfit', sans-serif;">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="col-md-4 mb-3 text-left">
+                        <h5 style="font-family: 'Outfit', sans-serif;">Contact Us</h5>
+                        <p class="mb-1" style="font-family: 'Outfit', sans-serif;"><i class="fas fa-phone-alt"></i> +91 9847153964 , +91 9747657747</p>
+                        <p class="mb-1" style="font-family: 'Outfit', sans-serif;"><i class="fas fa-envelope"></i> 2100tours@gmail.com</p>
+                        <p style="font-family: 'Outfit', sans-serif;"><i class="fas fa-map-marker-alt"></i>
+                            <!-- Tour Operations - Domestic & Outbound -->
+                             37/457, 1st floor,noble square, kadavanthra, <span style="margin-left: 18px;">s.a. road, kochi - 682 020, kerala.</span></p>
+                            <p style="font-family: 'Outfit', sans-serif;"><i class="fas fa-map-marker-alt"></i> regd office: 51/1129, hariga plaza, thykkoodam <span style="margin-left: 18px;">church road, kochi - 682 019, kerala.</span>
+                        </p>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="col-md-4 mb-3">
+                        <h5>Follow Us</h5>
+                        <div>
+                            <a href="https://www.facebook.com" class="text-white me-3" target="_blank">
+                                <i class="fab fa-facebook-f fa-lg"></i>
+                            </a>
+                            <a href="https://www.instagram.com" class="text-white me-3" target="_blank">
+                                <i class="fab fa-instagram fa-lg"></i>
+                            </a>
+                            <a href="https://wa.me/919847153964" class="text-white me-3" target="_blank">
+                                <i class="fab fa-whatsapp fa-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="bg-secondary">
+                <div class="text-center">
+                    <p class="mb-0" style="font-family: 'Outfit', sans-serif;">&copy; 2024 21st Century tours. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- WhatsApp Icon -->
+        <a href="https://wa.me/919847153964" class="whatsapp-icon" target="_blank" title="Chat with us on WhatsApp" style="text-decoration: none;">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+
+        <!-- Add Font Awesome for icons -->
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <!-- <script>
+            $(window).scroll(function () {
+                const nav = $('.navbar');
+                const carouselHeight = $('#carouselExampleIndicators').height();
+                if ($(this).scrollTop() > carouselHeight) {
+                    nav.removeClass('transparent').addClass('scrolled');
+                } else {
+                    nav.removeClass('scrolled').addClass('transparent');
+                }
+            });
+        </script>
+         <script>
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.remove('transparent');
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                    navbar.classList.add('transparent');
+                }
+            });
+        </script>
+        <script>
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        </script>
+        <script>
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        </script> -->
+    </body>
+</html>

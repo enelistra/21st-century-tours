@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bootstrap Example</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Outfit' rel='stylesheet'>
+        <style>
+            body {
+                padding-top: 0px;
+            }
+            /* Navbar Styling */
+            .navbar {
+                padding: 0.8rem 1rem;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .navbar-brand img {
+                max-width: 200px;
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .navbar.scrolled .navbar-brand img {
+                transform: scale(0.85); /* Shrinks logo on scroll */
+            }
+
+            .navbar-nav .nav-link {
+                font-size: 1rem;
+                margin: 0 15px;
+                transition: color 0.3s ease-in-out;
+            }
+
+            .navbar-nav .nav-link:hover {
+                color: #007bff;
+            }
+
+            /* Transparent background until scrolled */
+            .navbar.transparent {
+                background: rgba(255, 255, 255, 0.9);
+                box-shadow: none;
+            }
+
+            .navbar.scrolled {
+                background-color: #343a40 !important;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Adjustments for Mobile */
+            @media (max-width: 768px) {
+                .navbar-brand img {
+                    max-width: 100px;
+                }
+
+                .navbar-nav .nav-link {
+                    margin: 5px 0;
+                    font-size: 0.9rem;
+                }
+            }
+            
+            footer .me-3 {
+                margin-right: 15px;
+            }
+        
+            footer .fa-lg {
+                font-size: 1.5em;
+            }
+
+            @media (max-width: 576px) {
+                .card {
+                    margin-bottom: 20px;
+                }
+            }
+
+            #contact {
+                color: white;
+                padding: 60px 0;
+                position: relative;
+            }
+
+            #contact .bg-dark {
+                background: rgba(0, 0, 0, 0.8);
+                padding: 20px;
+            }
+
+            #contact .btn-primary {
+                background-color: #3498db;
+                border: none;
+                transition: background 0.3s ease;
+            }
+
+            #contact .btn-primary:hover {
+                background-color: #1d6fa5;
+            }
+
+            #contact ul {
+                font-size: 1.1rem;
+                line-height: 2;
+            }
+
+            @media (max-width: 768px) {
+                #contact .text-center {
+                    text-align: center;
+                }
+                #contact .bg-dark {
+                    margin-bottom: 20px;
+                }
+            }
+
+            /* Hero Section Styles */
+            .hero-section {
+                height: 100vh;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                text-align: center;
+            }
+            
+            .background-video {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: -1;
+            }
+            
+            /* Logo Styling */
+            .hero-section .logo {
+                position: absolute;
+                top: 10%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 2;
+                animation: fadeIn 1s ease-in-out;
+            }
+            
+            .hero-section .logo img {
+                width: 50%; /* Default size */
+            }
+            
+            /* Text Styling */
+            .hero-section .animated-text h1 {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                font-family: 'Arial', sans-serif;
+                font-size: 3rem;
+                font-weight: bold;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+                margin: 0;
+                padding: 0;
+                opacity: 0;
+                transform: translateY(50px);
+                animation: slideIn 1s ease-in-out forwards;
+            }
+            
+            /* Separator Styling */
+            .hero-section .animated-text .separator {
+                font-size: 2.5rem;
+                color: rgba(255, 255, 255, 0.7);
+            }
+            
+            /* Responsive Adjustments for Mobile */
+            @media screen and (max-width: 768px) {
+                .hero-section .logo img {
+                width: 120%; /* Increased size for mobile view */
+                }
+                .hero-section .animated-text h1 {
+                flex-direction: column;
+                text-align: center;
+                gap: 5px;
+                }
+                .hero-section .animated-text .separator {
+                display: none;
+                }
+            }
+            
+            /* Animations */
+            @keyframes slideIn {
+                from {
+                opacity: 0;
+                transform: translateY(50px);
+                }
+                to {
+                opacity: 1;
+                transform: translateY(0);
+                }
+            }
+            
+            @keyframes fadeIn {
+                from {
+                opacity: 0;
+                }
+                to {
+                opacity: 1;
+                }
+            }
+            /* Fixed WhatsApp Icon */
+            .whatsapp-icon {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1000;
+                background-color: #25d366;
+                color: white;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            }
+
+            .whatsapp-icon:hover {
+                transform: scale(1.1);
+                box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            }
+
+            .whatsapp-icon i {
+                font-size: 24px;
+            }
+            .text-rectangle {
+                padding: 20px; /* Space inside the rectangle */
+                text-align: justify; /* Justify the text alignment */
+                font-size: 16px; /* Adjust font size */
+                line-height: 1.6; /* Space between lines */
+            }
+
+        </style>
+        
+    </head>    
+    <body>
+        
+        <!-- Navbar -->
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="./static/logo/21CT Logo.png" alt="Logo" width="100%">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="./index.html" style="font-family: 'Outfit', sans-serif;">HOME</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="./index.html#about" style="font-family: 'Outfit', sans-serif;">ABOUT</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="./index.html#service" style="font-family: 'Outfit', sans-serif;">SERVICES</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="./index.html#contact" style="font-family: 'Outfit', sans-serif;">CONTACT</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <!-- Content Sections -->
+
+        <section id="about" class="py-5 bg-light">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- Text on the Left -->
+                    <div class="col-md-6 text-rectangle">
+                        <h1 style="font-family: 'Outfit', sans-serif;">DOMESTIC TOURS</h1>
+                        <p style="font-family: 'Outfit', sans-serif;">India’s diverse landscapes and vibrant cultures offer unforgettable experiences for every traveler. Explore the serene beauty of Assam, Meghalaya, and Arunachal Pradesh in the North East, or journey through the iconic Golden Triangle—Delhi, Agra, and Jaipur—for a blend of heritage and grandeur. Discover the snow-clad mountains of Kashmir and Himachal Pradesh, the royal charm of Rajasthan’s forts and deserts, or the lush wildlife of Jim Corbett and Nainital. Relax on Goa’s stunning beaches and soak in its lively coastal vibe. With our domestic tours, experience the best of India and create lasting memories.
+                        </p>
+                        <h6 style="font-family: 'Outfit', sans-serif;">For more inquiries follow us on whatsapp</h6>
+                    </div>
+                    <!-- Image on the Right -->
+                    <div class="col-md-6 text-center" style="margin-top: 100px;">
+                        <img src="./static/packages/package_2.jpg" alt="About Us" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="text-white py-4" style="background-color: #082f3c;">
+            <div class="container">
+                <div class="row">
+                    <!-- Quick Links -->
+                    <div class="col-md-4 mb-3">
+                        <h5 style="font-family: 'Outfit', sans-serif;">Quick Links</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#home" class="text-white text-decoration-none" style="font-family: 'Outfit', sans-serif;">Home</a></li>
+                            <li><a href="#about" class="text-white text-decoration-none" style="font-family: 'Outfit', sans-serif;">About Us</a></li>
+                            <li><a href="#services" class="text-white text-decoration-none" style="font-family: 'Outfit', sans-serif;">Services</a></li>
+                            <li><a href="#contact" class="text-white text-decoration-none" style="font-family: 'Outfit', sans-serif;">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="col-md-4 mb-3 text-left">
+                        <h5 style="font-family: 'Outfit', sans-serif;">Contact Us</h5>
+                        <p class="mb-1" style="font-family: 'Outfit', sans-serif;"><i class="fas fa-phone-alt"></i> +91 9847153964 , +91 9747657747</p>
+                        <p class="mb-1" style="font-family: 'Outfit', sans-serif;"><i class="fas fa-envelope"></i> 2100tours@gmail.com</p>
+                        <p style="font-family: 'Outfit', sans-serif;"><i class="fas fa-map-marker-alt"></i>
+                            <!-- Tour Operations - Domestic & Outbound -->
+                             37/457, 1st Floor,Noble Square, Kadavanthra, <span style="margin-left: 18px;">S.A. Road, Kochi - 682 020, Kerala.</span></p>
+                            <p style="font-family: 'Outfit', sans-serif;"><i class="fas fa-map-marker-alt"></i> 51/1129, Hariga Plaza, Thykkoodam Church <span style="margin-left: 18px;"> Road, Kochi - 682 019, Kerala.</span>
+                        </p>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="col-md-4 mb-3">
+                        <h5 style="font-family: 'Outfit', sans-serif;">Follow Us</h5>
+                        <div>
+                            <a href="https://www.facebook.com" class="text-white me-3" target="_blank">
+                                <i class="fab fa-facebook-f fa-lg"></i>
+                            </a>
+                            <a href="https://www.instagram.com" class="text-white me-3" target="_blank">
+                                <i class="fab fa-instagram fa-lg"></i>
+                            </a>
+                            <a href="https://wa.me/919847153964" class="text-white me-3" target="_blank">
+                                <i class="fab fa-whatsapp fa-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="bg-secondary">
+                <div class="text-center">
+                    <p class="mb-0" style="font-family: 'Outfit', sans-serif;">&copy; 2024 21st Century Tours. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- WhatsApp Icon -->
+        <a href="https://wa.me/919847153964" class="whatsapp-icon" target="_blank" title="Chat with us on WhatsApp" style="text-decoration: none;">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+
+        <!-- Add Font Awesome for icons -->
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>
